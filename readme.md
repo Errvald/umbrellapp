@@ -16,6 +16,6 @@ Umbrellapp is a small RESTful Api based on Lumen micro-framework.
 
 [Api Documentation](https://documenter.getpostman.com/view/846499/umbrellapp-api/6YtybNP)
 
-## Tests
+## Testing
 
 `phpunit` or `vendor/bin/phpunit` to run all tests.
