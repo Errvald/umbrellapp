@@ -74,4 +74,26 @@ trait RestResponses
         return response()->json($response, $response['code']);
     }
 
+    protected function authorizeResponse($token)
+    {
+        $response = [
+            'code' => 200,
+            'status' => 'success',
+            'data' => $token,
+            'message' => 'Logged in'
+        ];
+        return response()->json($response, $response['code']);
+    }
+
+    protected function authorizeErrorResponse($data, $code, $error = 'error', $msg = '')
+    {
+        $response = [
+            'code' => $code,
+            'status' => $error,
+            'data' => $data,
+            'message' => $msg
+        ];
+        return response()->json($response, $response['code']);
+    }
+
 }

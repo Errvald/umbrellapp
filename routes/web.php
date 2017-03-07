@@ -3,7 +3,6 @@
 $app->group(['prefix' => 'api/1.0'], function () use ($app) {
     
     // Query
-    
     $app->get('query', 'CityController@query');
     
     // Cities
@@ -19,6 +18,17 @@ $app->group(['prefix' => 'api/1.0'], function () use ($app) {
     $app->post('weather', 'WeatherController@store');
     $app->put('weather/{id}', 'WeatherController@update');
     $app->delete('weather/{id}', 'WeatherController@destroy');
+
+    // Favorites require authorization
+    $app->group(['middleware' => 'jwt.auth'], function () use ($app) {
+        $app->get('favorites', 'FavoriteController@index');
+        // Used for both storing and restoring.
+        $app->post('favorites/{id}', 'FavoriteController@store');
+        $app->delete('favorites/{id}', 'FavoriteController@destroy');
+    });
+
+    // Auth
+    $app->POST('auth/login', 'AuthController@loginPost');
 
 });
 

@@ -48,7 +48,10 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
 
-        return response()->json(['error' => 'Bad request'], $e->getStatusCode());
+        if($e->getStatusCode() === 401)
+            return response()->json(['error' => 'Unauthorized'], 401);
+
+        return response()->json(['error' => $e->getMessage()], $e->getStatusCode());
 
     }
 }

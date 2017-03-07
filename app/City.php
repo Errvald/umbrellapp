@@ -9,7 +9,20 @@ class City extends Model
 
     protected $table = 'cities';
     public $timestamps = false;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['name','country'];
+
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['pivot'];
 
     /**
      * Get city forecast.
